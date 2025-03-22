@@ -75,9 +75,6 @@
   </div>
 
   <script>
-    // Define pesanwhatsapp variable to store the WhatsApp message
-    let pesanwhatsapp = "Aku mau kok jadi pacar kamu ><";
-    
     function fungsimau() {
       fungsi = 0; tes();
       teksjudulakhir = "Yeayyy! 🥳";
@@ -94,6 +91,8 @@
 
     teksjudulakhir2 = "I Love You";
     tekspalingakhir = "Jangan lupa balas pesan<br>ke WhatsApp aku ya! ✨";
+
+    pesanwhatsapp = "Aku mau kok jadi pacar kamu ><";
 
     const body = document.querySelector("body"); 
     initom.style = "opacity:0;bottom:0;transition:none"; 
@@ -115,10 +114,17 @@
     }, 100);
 
     function menuju() {
-      const nomorWhatsApp = '+6282152005836'; // You can change this number if needed
+      // Format phone number correctly for mobile - no "+" sign
+      const nomorWhatsApp = '6282152005836'; // Country code without the "+" sign
       const pesan = encodeURIComponent(pesanwhatsapp);
-      const urlWA = `https://wa.me/${nomorWhatsApp}?text=${pesan}`;
-      window.open(urlWA, '_blank');
+      
+      // Direct app URL format for mobile WhatsApp
+      window.location.href = `whatsapp://send?phone=${nomorWhatsApp}&text=${pesan}`;
+      
+      // Fallback in case the whatsapp:// protocol doesn't work
+      setTimeout(function() {
+        window.location.href = `https://api.whatsapp.com/send?phone=${nomorWhatsApp}&text=${pesan}`;
+      }, 300);
     }
   </script>
   <script src="https://malasid.github.io/html/maukahkamu.js"></script>
